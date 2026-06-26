@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public enum Team { Neutral, Player, Enemy }
+// 파랑색, 노랑색 적군을 분리하기 위해 팀 Enum 확장
+public enum Team { Neutral, Player, EnemyBlue, EnemyYellow }
 
 public class Tower : MonoBehaviour
 {
@@ -9,10 +11,43 @@ public class Tower : MonoBehaviour
     public int unitCount = 10;
     public int maxUnitCount = 50;
     public float generateInterval = 1f;
+    public float sendInterval = 0.5f;
+
+    private List<Tower> connectedTargets = new List<Tower>();
+    private Coroutine sendRoutine;
+    private Renderer towerRenderer;
+
+    private void Awake()
+    {
+        towerRenderer = GetComponent<Renderer>();
+    }
 
     private void Start()
     {
+        UpdateColor();
         StartCoroutine(GenerateUnitsRoutine());
+    }
+
+    // 소유권에 따른 타워 색상 변경
+    private void UpdateColor()
+    {
+        if (towerRenderer == null) return;
+
+        switch (currentTeam)
+        {
+            case Team.Neutral:
+                towerRenderer.material.color = Color.lightGray;
+                break;
+            case Team.Player:
+                towerRenderer.material.color = Color.red;
+                break;
+            case Team.EnemyBlue:
+                towerRenderer.material.color = Color.blue;
+                break;
+            case Team.EnemyYellow:
+                towerRenderer.material.color = Color.yellow;
+                break;
+        }
     }
 
     private IEnumerator GenerateUnitsRoutine()
@@ -20,11 +55,45 @@ public class Tower : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(generateInterval);
-            // 중립 타워가 아니고, 최대치에 도달하지 않았을 때만 유닛 자동 생성
             if (currentTeam != Team.Neutral && unitCount < maxUnitCount)
             {
                 unitCount++;
-                UpdateUI(); 
+            }
+        }
+    }
+
+    public void ConnectTo(Tower target)
+    {
+        if (!connectedTargets.Contains(target))
+        {
+            connectedTargets.Add(target);
+            if (sendRoutine == null) sendRoutine = StartCoroutine(SendUnitsRoutine());
+        }
+    }
+
+    public void DisconnectFrom(Tower target)
+    {
+        if (connectedTargets.Contains(target))
+        {
+            connectedTargets.Remove(target);
+            if (connectedTargets.Count == 0 && sendRoutine != null)
+            {
+                StopCoroutine(sendRoutine);
+                sendRoutine = null;
+            }
+        }
+    }
+
+    private IEnumerator SendUnitsRoutine()
+    {
+        while (connectedTargets.Count > 0)
+        {
+            yield return new WaitForSeconds(sendInterval);
+            for (int i = connectedTargets.Count - 1; i >= 0; i--)
+            {
+                Unit unit = UnitPool.Instance.GetUnit();
+                unit.transform.position = transform.position;
+                unit.Initialize(currentTeam, connectedTargets[i]);
             }
         }
     }
@@ -33,47 +102,29 @@ public class Tower : MonoBehaviour
     {
         if (unitTeam == currentTeam)
         {
-            // 아군 유닛 도착 시 방어력(숫자) 증가
             if (unitCount < maxUnitCount) unitCount++;
         }
         else
         {
-            // 적군 유닛 도착 시 숫자 감소
             unitCount--;
             if (unitCount < 0)
             {
-                // 체력이 0 미만이 되면 소유권 이전 및 숫자 회복 시작
                 currentTeam = unitTeam;
                 unitCount = 1;
+                UpdateColor(); // 소유권 변경 시 색상 즉시 업데이트
+                DisconnectAll();
             }
         }
-        UpdateUI();
     }
 
-    public void SendUnitsTo(Tower target)
+    private void DisconnectAll()
     {
-        StartCoroutine(SendUnitsRoutine(target));
-    }
-
-    private IEnumerator SendUnitsRoutine(Tower target)
-    {
-        // 타워가 보유한 유닛의 절반을 출병
-        int unitsToSend = unitCount / 2;
-        for (int i = 0; i < unitsToSend; i++)
+        connectedTargets.Clear();
+        if (sendRoutine != null)
         {
-            unitCount--;
-            UpdateUI();
-
-            Unit unit = UnitPool.Instance.GetUnit();
-            unit.transform.position = transform.position;
-            unit.Initialize(currentTeam, target);
-
-            yield return new WaitForSeconds(0.2f); // 출병 간격
+            StopCoroutine(sendRoutine);
+            sendRoutine = null;
         }
-    }
-
-    private void UpdateUI()
-    {
-        // 향후 TextMeshPro를 연동하여 화면에 숫자 렌더링
+        ConnectionManager.Instance.RemoveAllLinksFrom(this);
     }
 }
