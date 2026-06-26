@@ -310,6 +310,7 @@ MonoBehaviour:
   currentTeam: 0
   unitCount: 10
   maxUnitCount: 50
-  generateInterval: 0
-  sendInterval: 3
+  generateInterval: 30
+  generateAmount: 1
+  sendInterval: 2
   unitText: {fileID: 4965514351681704006}

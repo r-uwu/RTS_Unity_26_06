@@ -136,6 +136,8 @@ private void Awake()
 
     public void ReceiveUnit(Team unitTeam)
     {
+
+    Debug.Log($"{gameObject.name}¿¡ À¯´Ö µµÂø@@ ÇöÀç ÆÀ: {currentTeam}, µµÂø ÆÀ: {unitTeam}");
         if (unitTeam == currentTeam)
         {
             if (unitCount < maxUnitCount) unitCount++;
