@@ -25,9 +25,11 @@ public class Tower : MonoBehaviour
     private Coroutine sendRoutine;
     private Renderer towerRenderer;
 
-    private void Awake()
+private void Awake()
     {
         towerRenderer = GetComponent<Renderer>();
+        // 인스펙터 할당 실수나 프리팹 덮어쓰기로 인한 참조 증발을 방지하는 자동 할당
+        unitText = GetComponentInChildren<TextMeshPro>(); 
         AllTowers.Add(this);
     }
 

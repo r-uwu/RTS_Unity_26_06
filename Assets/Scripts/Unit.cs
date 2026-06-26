@@ -13,12 +13,16 @@ public class Unit : MonoBehaviour
         this.targetTower = target;
     }
 
-    private void Update()
+private void Update()
     {
         if (targetTower == null) return;
         transform.position = Vector3.MoveTowards(transform.position, targetTower.transform.position, speed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, targetTower.transform.position) < 0.5f)
+        // Y축 고도 차이를 무시하기 위해 X, Z 좌표만 추출하여 거리 계산
+        Vector3 posA = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 posB = new Vector3(targetTower.transform.position.x, 0, targetTower.transform.position.z);
+
+        if (Vector3.Distance(posA, posB) < 1.0f)
         {
             targetTower.ReceiveUnit(currentTeam);
             UnitPool.Instance.ReturnUnit(this);
