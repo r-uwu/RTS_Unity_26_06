@@ -1,30 +1,42 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider), typeof(Rigidbody))]
 public class Unit : MonoBehaviour
 {
     public float speed = 5f;
-    private Team team;
+    public Team currentTeam { get; private set; }
     private Tower targetTower;
 
     public void Initialize(Team team, Tower target)
     {
-        this.team = team;
+        this.currentTeam = team;
         this.targetTower = target;
     }
 
     private void Update()
     {
         if (targetTower == null) return;
-
-        // 타겟 타워를 향해 직선 이동
         transform.position = Vector3.MoveTowards(transform.position, targetTower.transform.position, speed * Time.deltaTime);
 
-        // 타워 도착 판정 (거리 0.5f 이내)
         if (Vector3.Distance(transform.position, targetTower.transform.position) < 0.5f)
         {
-            targetTower.ReceiveUnit(team);
+            targetTower.ReceiveUnit(currentTeam);
             UnitPool.Instance.ReturnUnit(this);
-            targetTower = null; // 초기화
+            targetTower = null;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Unit otherUnit = other.GetComponent<Unit>();
+        // 상대방 유닛이고, 두 유닛 모두 활성화된 상태일 때만 충돌 처리 (중복 반환 방지)
+        if (otherUnit != null && otherUnit.currentTeam != this.currentTeam)
+        {
+            if (this.gameObject.activeInHierarchy && otherUnit.gameObject.activeInHierarchy)
+            {
+                UnitPool.Instance.ReturnUnit(this);
+                UnitPool.Instance.ReturnUnit(otherUnit);
+            }
         }
     }
 }

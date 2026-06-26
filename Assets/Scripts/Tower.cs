@@ -1,17 +1,25 @@
 using UnityEngine;
+using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 
-// 파랑색, 노랑색 적군을 분리하기 위해 팀 Enum 확장
 public enum Team { Neutral, Player, EnemyBlue, EnemyYellow }
 
 public class Tower : MonoBehaviour
 {
+    public static List<Tower> AllTowers = new List<Tower>();
+
     public Team currentTeam = Team.Neutral;
     public int unitCount = 10;
     public int maxUnitCount = 50;
-    public float generateInterval = 1f;
+    
+    [Header("Generation Settings")]
+    public float generateInterval = 1f; // 생성 주기 (초)
+    public int generateAmount = 1;      // 1틱당 생성량 (0으로 두면 자동회복 정지!)
+    
     public float sendInterval = 0.5f;
+    
+    public TextMeshPro unitText;
 
     private List<Tower> connectedTargets = new List<Tower>();
     private Coroutine sendRoutine;
@@ -20,33 +28,55 @@ public class Tower : MonoBehaviour
     private void Awake()
     {
         towerRenderer = GetComponent<Renderer>();
+        AllTowers.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        AllTowers.Remove(this);
     }
 
     private void Start()
     {
-        UpdateColor();
+        UpdateColorAndUI();
         StartCoroutine(GenerateUnitsRoutine());
+        
+        if (currentTeam == Team.EnemyBlue || currentTeam == Team.EnemyYellow)
+        {
+            StartCoroutine(EnemyAIRoutine());
+        }
     }
 
-    // 소유권에 따른 타워 색상 변경
-    private void UpdateColor()
+    public void UpdateColorAndUI()
     {
-        if (towerRenderer == null) return;
+        if (unitText != null) unitText.text = unitCount.ToString();
 
+        if (towerRenderer == null) return;
         switch (currentTeam)
         {
-            case Team.Neutral:
-                towerRenderer.material.color = Color.lightGray;
-                break;
-            case Team.Player:
-                towerRenderer.material.color = Color.red;
-                break;
-            case Team.EnemyBlue:
-                towerRenderer.material.color = Color.blue;
-                break;
-            case Team.EnemyYellow:
-                towerRenderer.material.color = Color.yellow;
-                break;
+            case Team.Neutral: towerRenderer.material.color = Color.gray; break;
+            case Team.Player: towerRenderer.material.color = Color.red; break;
+            case Team.EnemyBlue: towerRenderer.material.color = Color.blue; break;
+            case Team.EnemyYellow: towerRenderer.material.color = Color.yellow; break;
+        }
+    }
+
+    private IEnumerator EnemyAIRoutine()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        while (currentTeam == Team.EnemyBlue || currentTeam == Team.EnemyYellow)
+        {
+            if (AllTowers.Count > 1)
+            {
+                Tower target = null;
+                while (target == null || target == this)
+                {
+                    target = AllTowers[Random.Range(0, AllTowers.Count)];
+                }
+                ConnectionManager.Instance.CreateLinkByAI(this, target);
+            }
+            yield return new WaitForSeconds(Random.Range(4f, 7f)); 
         }
     }
 
@@ -55,9 +85,13 @@ public class Tower : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(generateInterval);
-            if (currentTeam != Team.Neutral && unitCount < maxUnitCount)
+            // generateAmount가 0보다 클 때만 자동 회복 실행
+            if (generateAmount > 0 && currentTeam != Team.Neutral && unitCount < maxUnitCount)
             {
-                unitCount++;
+                unitCount += generateAmount;
+                if (unitCount > maxUnitCount) unitCount = maxUnitCount; // 최대치 초과 방지
+                
+                if (unitText != null) unitText.text = unitCount.ToString();
             }
         }
     }
@@ -111,13 +145,19 @@ public class Tower : MonoBehaviour
             {
                 currentTeam = unitTeam;
                 unitCount = 1;
-                UpdateColor(); // 소유권 변경 시 색상 즉시 업데이트
-                DisconnectAll();
+                
+                DisconnectOutgoing();
+                
+                if (currentTeam == Team.EnemyBlue || currentTeam == Team.EnemyYellow)
+                {
+                    StartCoroutine(EnemyAIRoutine());
+                }
             }
         }
+        UpdateColorAndUI();
     }
 
-    private void DisconnectAll()
+    private void DisconnectOutgoing()
     {
         connectedTargets.Clear();
         if (sendRoutine != null)
@@ -125,6 +165,6 @@ public class Tower : MonoBehaviour
             StopCoroutine(sendRoutine);
             sendRoutine = null;
         }
-        ConnectionManager.Instance.RemoveAllLinksFrom(this);
+        ConnectionManager.Instance.RemoveOutgoingLinksFrom(this);
     }
 }
