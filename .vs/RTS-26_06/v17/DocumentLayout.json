@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\User\\workspace\\RTS-26_06\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\ConnectionManager.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\ConnectionManager.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\GameManager.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\NewMonoBehaviourScript.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\NewMonoBehaviourScript.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Tower.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -13,6 +17,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Unit.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Unit.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\ConnectionManager.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\ConnectionManager.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\UnitPool.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -25,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Unit.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Unit.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\NewMonoBehaviourScript.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\NewMonoBehaviourScript.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,53 +47,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ConnectionManager.cs",
-              "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\ConnectionManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\ConnectionManager.cs",
-              "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\ConnectionManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\ConnectionManager.cs",
-              "ViewState": "AgIAAKkAAAAAAAAAAAAAALsAAAABAAAAAAAAAA==",
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-25T13:27:16.146Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UnitPool.cs",
-              "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\UnitPool.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UnitPool.cs",
-              "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\UnitPool.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UnitPool.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-25T12:04:21.5Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Unit.cs",
-              "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Unit.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Unit.cs",
-              "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Unit.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Unit.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-25T11:47:33.298Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Tower.cs",
-              "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Tower.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Tower.cs",
-              "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Tower.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Tower.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAGYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-25T11:46:56.568Z",
+              "WhenOpened": "2026-06-26T11:03:14.311Z",
               "EditorCaption": ""
             },
             {
@@ -99,6 +64,57 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "ConnectionManager.cs",
+              "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\ConnectionManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ConnectionManager.cs",
+              "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\ConnectionManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ConnectionManager.cs",
+              "ViewState": "AgIAAPwAAAAAAAAAAAAAAAsBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T13:27:16.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UnitPool.cs",
+              "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\UnitPool.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UnitPool.cs",
+              "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\UnitPool.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UnitPool.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T12:04:21.5Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Unit.cs",
+              "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Unit.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Unit.cs",
+              "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Unit.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Unit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T11:47:33.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Tower.cs",
+              "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Tower.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Tower.cs",
+              "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\Tower.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Tower.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAFoAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-25T11:46:56.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "UnitData.cs",
               "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Scripts\\UnitData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UnitData.cs",
@@ -106,24 +122,22 @@
               "RelativeToolTip": "Assets\\Scripts\\UnitData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-25T11:46:36.465Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-25T11:46:36.465Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "NewMonoBehaviourScript.cs",
               "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\NewMonoBehaviourScript.cs",
               "RelativeDocumentMoniker": "Assets\\NewMonoBehaviourScript.cs",
               "ToolTip": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\NewMonoBehaviourScript.cs",
               "RelativeToolTip": "Assets\\NewMonoBehaviourScript.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-25T11:41:28.479Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Unit.cs",
               "DocumentMoniker": "C:\\Users\\User\\workspace\\RTS-26_06\\Assets\\Unit.cs",
               "RelativeDocumentMoniker": "Assets\\Unit.cs",
