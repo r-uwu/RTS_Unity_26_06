@@ -1,36 +1,49 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; // TextMeshPro 사용을 위한 네임스페이스
 using UnityEngine.SceneManagement;
 
-public class LobbyUiManager : MonoBehaviour
+public class LobbyUIManager : MonoBehaviour
 {
-    // 인스펙터창에서 위에서 만든 ScriptableObject 에셋을 각각 드래그 앤 드롭하여 할당합니다.
-    [SerializeField] private CurrentDeckData deckData;
-    [SerializeField] private UserProfileData profileData;
+    [Header("Data Profile")]
+    public UserProfileData profileData; // 생성해둔 ScriptableObject 에셋 할당
 
-    [SerializeField] private InputField nameInputField;
+    [Header("UI Elements - Top Panel")]
+    public Image portraitImage;
+    public TMP_Text nameText;
+    public TMP_Text levelText;
 
-    // 이름 수정 완료 버튼 이벤트 바인딩용 메서드
-    public void OnSaveProfileButtonPressed()
+    void Start()
     {
-        if (nameInputField != null && !string.IsNullOrEmpty(nameInputField.text))
+        // 씬이 시작될 때 ScriptableObject의 데이터를 UI에 반영합니다.
+        UpdateProfileUI();
+    }
+
+    private void UpdateProfileUI()
+    {
+        if (profileData != null)
         {
-            profileData.UpdateProfile(nameInputField.text);
-            Debug.Log("프로필 데이터가 ScriptableObject에 저장되었습니다: " + profileData.userName);
+            nameText.text = profileData.userName;
+            levelText.text = $"Lv. {profileData.userLevel}";
+            
+            if (profileData.userPortrait != null)
+            {
+                portraitImage.sprite = profileData.userPortrait;
+            }
         }
     }
 
-    // 1번 슬롯에 105번 유닛을 장착하는 예시 메서드
-    public void OnSelectUnitExample(int slotIndex, int unitId)
+    // [유닛 정비하기] 버튼의 OnClick 이벤트에 연결할 메서드
+    public void OnUnitSetupButtonClicked()
     {
-        deckData.SetUnitInSlot(slotIndex, unitId);
-        Debug.Log($"{slotIndex}번 슬롯에 {unitId}번 유닛 장착 완료.");
+        Debug.Log("유닛 정비 패널을 엽니다.");
+        // 예: unitSetupPanel.SetActive(true);
     }
 
-    // 인게임 스테이지로 이동하는 버튼 이벤트
-    public void OnEnterStageButtonPressed()
+    // [스테이지 진입] 버튼의 OnClick 이벤트에 연결할 메서드
+    public void OnEnterStageButtonClicked()
     {
-        // 로비에서 저장된 ScriptableObject는 씬이 바뀌어도 파괴되지 않고 유지됩니다.
-        SceneManager.LoadScene("Stage_Test_01");
+        Debug.Log("스테이지 씬으로 전환합니다.");
+        SceneManager.LoadScene("Stage_Test_01"); // 실제 인게임 씬 이름으로 변경
     }
 }
